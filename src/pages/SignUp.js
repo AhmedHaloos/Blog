@@ -76,9 +76,7 @@ const SignUp = () => {
 
             toast.error(error?.email?.message, { position: toast.POSITION.TOP_CENTER });
         }
-        else {
-            toast.error(error?.password?.message, { position: toast.POSITION.TOP_CENTER });
-        }
+       
         setError(error);
     }
     /**

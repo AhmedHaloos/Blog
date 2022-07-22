@@ -15,50 +15,104 @@ export default function Chat() {
     const { state } = useLocation();
     const { id } = state !== null ? state : '';
     const dataContext = useContext(DataContext);
-    // const [chatUser, setChatUser] = useState({});
+    const [cnvs, setCnvs] = useState([]);
+    const [convUsers, setConvUsers] = useState({});
 
 
-    useEffect(() => {
-      
-
-            // let curUser = dataContext.users.find((user) => {
-            //   return id== user.id;
-            // })
-        
-            // setChatUser(curUser);
-        
-
-
-    }, [])
 
     useEffect(() => {
-        let msgs = [] ;
-        // const curUserConvs = dataContext.getCurrentUser()?.convs;
 
-     
-        dataContext.conversations.forEach(conv => {
-          
+        dispConv();
+        dispAllConvs();
+        getConvUsers();
+        // console.log(id);
+        // let msgs = [] ;
+        // //  console.log(dataContext.conversations);
 
-            if(conv.id == id){
-              for (const key in conv.convBody) {
-               msgs.push( conv.convBody[key]);
-              }
-             
+        //  for (const key in dataContext.conversations) {
+
+        //      //    console.log(key);
+        //      if(key == dataContext.getCurrentUser()?.convs[`${id}`]){
+        //        for (const id in dataContext.conversations[key]) {
+
+        //         console.log(dataContext.conversations[key][id]);
+        //         msgs.push(dataContext.conversations[key][id])
+        //        } 
+        //         // console.log( dataContext.getCurrentUser()?.convs[`${id}`]);
+
+        //     }
+        //  }
+        // setMsgs(msgs);
+    }, [dataContext.conversations])
+
+
+    const dispConv = () => {
+
+        let msgs = [];
+        //  console.log(dataContext.conversations);
+
+        for (const key in dataContext.conversations) {
+
+            //    console.log(key);
+            if (key == dataContext.getCurrentUser()?.convs[`${id}`]) {
+                for (const id in dataContext.conversations[key]) {
+
+                    msgs.push(dataContext.conversations[key][id])
+
+                }
+
             }
-        });
+        }
+        setMsgs(msgs);
 
-        // for ( let convId in dataContext.conversations) {
+    }
+
+    const dispAllConvs = () => {
+
+        let convs = []
+        for (const key in dataContext.getCurrentUser()?.convs ) {
+
+            convs.push(dataContext.getCurrentUser()?.convs[key])
+        }
+        setCnvs(convs);
+    }
+
+
+    const dispMsgs = (key) => {
+
+        let msgs = [];
+        for (const id in dataContext.conversations[key]) {
+
+            // console.log(dataContext.conversations[key][id]);
+            msgs.push(dataContext.conversations[key][id])
+        }
+
+        setMsgs(msgs);
+    }
+
+
+    const getConvUsers = () => {
+
+        //console.log(cnvs);
+        let CUsers = [];
+        for (const key in dataContext.getCurrentUser()?.convs ) {
+
+            CUsers.push(getUser(key))
             
-        //      console.log(convId);
-            // console.log( id);
-        //   if(dataContext.conversations.id == id){
-            // msgs.push(dataContext.conversations.conv);
-        //   }
-        // }
+        }
+       console.log(CUsers);
+       setCnvs(CUsers)
+    }
 
+    const getUser = (id)=>{
+        let mUser = {}
+        mUser = dataContext.users.find((user) => {
+            return user.id == id;
+        })
+        console.log(mUser);
+          return mUser;
+    }
 
-        setMsgs(msgs)
-    }, [dataContext.conversations, dataContext.users])
 
 
     const getRecUser = () => {
@@ -99,9 +153,9 @@ export default function Chat() {
                 .then(() => {
 
                     console.log('message added');
-                    alert('Message Sent')
+                    // alert('Message Sent')
                     //  updateUsers();
-                    
+
                 })
                 .catch((error) => {
                     alert('Message Not Sent')
@@ -121,14 +175,7 @@ export default function Chat() {
             return convId;
         }
 
-        //check if this conv. is already exist 
 
-
-        // if conv is exist  = conversation
-        // then convId = conversation
-        // if not then generate convId and update the sender and receiver 
-        //with convId
-        //console.log('inside sender');
         if (senderUser.convs[`${recUser.id}`]) {
 
             convId = senderUser.convs[`${recUser.id}`];
@@ -164,21 +211,33 @@ export default function Chat() {
 
     const handleEnter = (e) => {
 
-        if(e.target.value == ''){
+        if (e.target.value == '') {
             return;
         }
-        if (e.key == 'Enter'){
-           handleAddMessge();
+        if (e.key == 'Enter') {
+            handleAddMessge();
         }
     }
 
 
     return (
 
-        <div>
+        <div className="row d-flex felx direction-row" style={{position:'relative'}}>
+            <Test currPage={'chat'} />
+            <div className="col-3 conv-list">
 
-            <div className="chat">
-                <Test currPage={'chat'} />
+                {
+                    cnvs.map((convUser) => (
+
+                        <div key = {convUser.id} className="conv-list-item"
+                        onClick={()=>{dispMsgs(dataContext.getCurrentUser()?.convs[convUser.id])}}
+                        >{convUser.name}</div>
+
+                    ))
+
+                }
+            </div>
+            <div className="chat col-9" style={{ marginLeft: 0 }}>
                 {
                     msgs.map((msg) => {
 

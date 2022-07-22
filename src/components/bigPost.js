@@ -1,11 +1,11 @@
 
 
 
-export default function BigPost(){
+export default function BigPost({post}){
 
     return (
 
-        <p>Post details</p>
+        <p>{post.postBody}</p>
     )
 
 }

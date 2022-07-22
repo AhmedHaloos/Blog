@@ -20,7 +20,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
 
-   console.log(params.id);
+  //  console.log(params.id);
     // get the user whom profilePage is displayed
     let user = contextData.users.find((user) => {
       return user.id == params.id;
@@ -28,9 +28,7 @@ export default function ProfilePage() {
     if (user != null) {
       setCurrentUser(user);
     }
-    else {
-      setCurrentUser(null);
-    }
+  
 
   }, [])
 

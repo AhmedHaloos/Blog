@@ -69,14 +69,14 @@ function Post({ post, handleLikePost, handleSendComment, handleDeletePost, handl
 
         <div className="post-container  mt-4">
           
-            <USerInfo user={user} post={post} imageUrl={imgUrl} />
+            <USerInfo user={user} post={post} imageUrl={imgUrl} newPost = {false} />
             <section className="">
                 {post.postBody.length > 80 ?
                 <div style={{margin:'2rem'}} >
                 {post.postBody.substr(0, 80)} 
-                      <LinkContainer to={'/bigPost'} style={{textDecoration:'underline', color:'#009df7', cursor:'pointer', display:"inline"}}>
-                        <p > Read More</p>
-                      </LinkContainer>
+                        <p sty> Read More</p>
+                      {/* <LinkContainer to={'/bigPost'}  style={{textDecoration:'underline', color:'#009df7', cursor:'pointer', display:"inline"}}>
+                      </LinkContainer> */}
                     </div>
                     :     
                 <div className=" text-center m-1 p-2 mt-2">{post.postBody}</div>

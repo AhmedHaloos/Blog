@@ -36,18 +36,11 @@ function App() {
 
 
   useEffect(()=>{
-    let chatUser = getCurrentUser();
-     let cnvs = [] 
-    for (const key in chatUser?.convs) {
-      
-      registerForChat(chatUser?.convs[key], (snapshot) => {
-        cnvs.push({convBody:snapshot.val(), id:key});
-        // console.log(snapshot.val());
-           
+      registerForChat((snapshot) => {
+       
+        setConversations(snapshot.val())     
       })
-
-    }
-    setConversations(cnvs)
+       
 
 }, [users])
 
@@ -140,7 +133,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={isReady == 1 ? <Home /> : <LoadingPage />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/home' element={isReady == 1 ? <Home /> : <LoadingPage />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='signin' element={<Login />} />
           <Route path='/about' element={<About />} />

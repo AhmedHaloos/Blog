@@ -65,12 +65,13 @@ export default function NewPost({isNewPost, UpdatedPost, currentImgUrl}) {
                 </div>
                 <USerInfo user={homeContext.getCurrentUser()}
                     post={new Post('body', 'title', Date.now(), '1', '', [])} newPost={true} />
-                <hr style={{ marginBottom: '1rem', marginTop: '0px', marginLeft:'0.3rem', marginRight:'0.3rem' }} />
+                {/* <hr style={{ marginBottom: '1rem', marginTop: '0px', marginLeft:'0.3rem', marginRight:'0.3rem' }} /> */}
                 <div className="new-post-input mb-1">
-                    <input type={'text'} placeholder='Title' value={postTitle} onChange={handlePostTitle}/>
+                    {/* <input type={'text'} placeholder='Title' value={postTitle} onChange={handlePostTitle}/> */}
 
-                    <textarea type="text" className=" mt-1" rows='3' placeholder="Description"
-                        style={{ border: '1px solid #bbb' }} onChange={handlePostData}  value={postBody}/>
+                    <textarea type="text" className=" mt-1" rows='3' placeholder="Write Your Post"
+                        // style={{ border: '1px solid #bbb' }}
+                         onChange={handlePostData}  value={postBody}/>
                 </div>
 
                 <div style={{ display: cleared ? 'none' : 'flex', justifyContent: 'space-between' }}>

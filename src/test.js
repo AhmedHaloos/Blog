@@ -40,7 +40,7 @@ export default function Test({ currPage }) {
               <Nav.Link>About</Nav.Link>
             </LinkContainer>
           </Nav>
-          {/* <Badge  /> */}
+          <Badge  />
           <div style={{width:'2rem'}}></div>
           <Nav>
             <LinkContainer to={'/signin'}>

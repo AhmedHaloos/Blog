@@ -53,9 +53,9 @@ function getConversation(id){
 
 }
 
-function registerForChat(chatId, chatCallback){
+function registerForChat(chatCallback){
 
-    const chatRef = ref(db, 'conversations/' + chatId);
+    const chatRef = ref(db, 'conversations/');
     onValue(chatRef, chatCallback);
 
 }

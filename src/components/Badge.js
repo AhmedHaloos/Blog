@@ -8,9 +8,11 @@ import { useNavigate } from 'react-router-dom';
 export default function SimpleBadge({bCount}) {
   
     const navigate = useNavigate();
+
+  
     return (
     <IconButton aria-label='custom label'>
-    <Badge badgeContent={10} color="primary" onClick={() => {navigate('/chat') }}>
+    <Badge  color="primary" onClick={() => {navigate('/chat') }}>
       <MailIcon sx={{ color: grey[50] }} />
     </Badge>
     </IconButton>

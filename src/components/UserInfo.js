@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import '../css/main.css'
 import DataContext from "../DataContext";
 import PostDropDown from "./PostDropDown";
-const USerInfo = ({ post, user, imageUrl }) => {
+const USerInfo = ({ post, user, imageUrl, newPost }) => {
 
  const contextData = useContext(DataContext);
 
- useEffect(()=>{console.log('current',  contextData.users); /* console.log('current', contextData.getCurrentUser());*/}, [user])
+//  useEffect(()=>{console.log('current',  contextData.users); /* console.log('current', contextData.getCurrentUser());*/}, [user])
     return (
         <div className="profile-body user-profile">
             <div>
@@ -24,7 +24,7 @@ const USerInfo = ({ post, user, imageUrl }) => {
                 </div>
             </div>
             {
-                (user.id !== contextData.currentUser.uid) ?
+                (user.id !== contextData.currentUser.uid) ||(newPost) ?
                     <></>
                     :
                     <PostDropDown post={post} imageUrl={imageUrl} />
