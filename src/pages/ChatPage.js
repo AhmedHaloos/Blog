@@ -16,7 +16,7 @@ export default function Chat() {
     const { id } = state !== null ? state : '';
     const dataContext = useContext(DataContext);
     const [cnvs, setCnvs] = useState([]);
-    const [convUsers, setConvUsers] = useState({});
+    const [convUserId, setConvUserId] = useState("");
 
 
 
@@ -25,6 +25,7 @@ export default function Chat() {
         dispConv();
         dispAllConvs();
         getConvUsers();
+
         // console.log(id);
         // let msgs = [] ;
         // //  console.log(dataContext.conversations);
@@ -55,6 +56,8 @@ export default function Chat() {
 
             //    console.log(key);
             if (key == dataContext.getCurrentUser()?.convs[`${id}`]) {
+                setConvUserId(key);
+                console.log(key);
                 for (const id in dataContext.conversations[key]) {
 
                     msgs.push(dataContext.conversations[key][id])
@@ -70,7 +73,7 @@ export default function Chat() {
     const dispAllConvs = () => {
 
         let convs = []
-        for (const key in dataContext.getCurrentUser()?.convs ) {
+        for (const key in dataContext.getCurrentUser()?.convs) {
 
             convs.push(dataContext.getCurrentUser()?.convs[key])
         }
@@ -78,9 +81,10 @@ export default function Chat() {
     }
 
 
-    const dispMsgs = (key) => {
+    const dispMsgs = (key, id) => {
 
         let msgs = [];
+        setConvUserId(id);
         for (const id in dataContext.conversations[key]) {
 
             // console.log(dataContext.conversations[key][id]);
@@ -95,22 +99,22 @@ export default function Chat() {
 
         //console.log(cnvs);
         let CUsers = [];
-        for (const key in dataContext.getCurrentUser()?.convs ) {
+        for (const key in dataContext.getCurrentUser()?.convs) {
 
             CUsers.push(getUser(key))
-            
+
         }
-       console.log(CUsers);
-       setCnvs(CUsers)
+        console.log(CUsers);
+        setCnvs(CUsers)
     }
 
-    const getUser = (id)=>{
+    const getUser = (id) => {
         let mUser = {}
         mUser = dataContext.users.find((user) => {
             return user.id == id;
         })
-        console.log(mUser);
-          return mUser;
+        //console.log(mUser);
+        return mUser;
     }
 
 
@@ -119,10 +123,9 @@ export default function Chat() {
 
         let recUSer = dataContext.users.find((user) => {
 
-            return user.id == id;
+            return user.id == convUserId;
         })
 
-        console.log(recUSer);
         return recUSer;
 
     }
@@ -137,7 +140,6 @@ export default function Chat() {
         if (msg.msgBody === '') {
             return;
         }
-        setMsg('');
         const recUser = getRecUser();
         const senderUser = dataContext.getCurrentUser();
         if (recUser == undefined || recUser == null || senderUser == undefined || senderUser == null) {
@@ -152,6 +154,7 @@ export default function Chat() {
             sendMessage(convId, message)
                 .then(() => {
 
+                    setMsg('');
                     console.log('message added');
                     // alert('Message Sent')
                     //  updateUsers();
@@ -222,15 +225,15 @@ export default function Chat() {
 
     return (
 
-        <div className="row d-flex felx direction-row" style={{position:'relative'}}>
+        <div className="row d-flex felx direction-row" style={{ position: 'relative' }}>
             <Test currPage={'chat'} />
             <div className="col-3 conv-list">
 
                 {
                     cnvs.map((convUser) => (
 
-                        <div key = {convUser.id} className="conv-list-item"
-                        onClick={()=>{dispMsgs(dataContext.getCurrentUser()?.convs[convUser.id])}}
+                        <div key={convUser.id} className="conv-list-item"
+                            onClick={() => { dispMsgs(dataContext.getCurrentUser()?.convs[convUser.id], convUser.id) }}
                         >{convUser.name}</div>
 
                     ))
