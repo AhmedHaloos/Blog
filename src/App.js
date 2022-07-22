@@ -32,21 +32,22 @@ function App() {
   const [navVisible, setNavVisible] = useState(true);
   const [prevScrollpos, setPrevScrollPos] = useState(window.pageYOffset);
   const [isReady, setReady] = useState(0);
-   const[msgKeys, setMsgKey] = useState({});
+   const[conversations, setConversations] = useState([{}]);
 
 
   useEffect(()=>{
     let chatUser = getCurrentUser();
-
+     let cnvs = [] 
     for (const key in chatUser?.convs) {
-    //   console.log(chatUser.convs[key]);
-
+      
       registerForChat(chatUser?.convs[key], (snapshot) => {
-          setMsgKey(snapshot.val());
+        cnvs.push({convBody:snapshot.val(), id:key});
+        // console.log(snapshot.val());
            
       })
 
     }
+    setConversations(cnvs)
 
 }, [users])
 
@@ -133,7 +134,7 @@ function App() {
   return (
     <DataContext.Provider value={{
       isLoggedIn, currentUser, users, posts, comments, dispState, setDispState, getCurrentUser,
-      setCurrentUser, setPosts, setComments, setUsers, navVisible, msgKeys
+      setCurrentUser, setPosts, setComments, setUsers, navVisible, conversations
     }}>
 
       <Router>

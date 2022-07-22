@@ -15,22 +15,50 @@ export default function Chat() {
     const { state } = useLocation();
     const { id } = state !== null ? state : '';
     const dataContext = useContext(DataContext);
+    // const [chatUser, setChatUser] = useState({});
 
 
     useEffect(() => {
+      
 
+            // let curUser = dataContext.users.find((user) => {
+            //   return id== user.id;
+            // })
+        
+            // setChatUser(curUser);
+        
 
 
     }, [])
 
     useEffect(() => {
-        let msgs = [];
-        for (let msgId in dataContext.msgKeys) {
-            msgs.push(dataContext.msgKeys[`${msgId}`]);
-        }
-        console.log(msgs);
+        let msgs = [] ;
+        // const curUserConvs = dataContext.getCurrentUser()?.convs;
+
+     
+        dataContext.conversations.forEach(conv => {
+          
+
+            if(conv.id == id){
+              for (const key in conv.convBody) {
+               msgs.push( conv.convBody[key]);
+              }
+             
+            }
+        });
+
+        // for ( let convId in dataContext.conversations) {
+            
+        //      console.log(convId);
+            // console.log( id);
+        //   if(dataContext.conversations.id == id){
+            // msgs.push(dataContext.conversations.conv);
+        //   }
+        // }
+
+
         setMsgs(msgs)
-    }, [dataContext.msgKeys])
+    }, [dataContext.conversations, dataContext.users])
 
 
     const getRecUser = () => {
@@ -71,10 +99,12 @@ export default function Chat() {
                 .then(() => {
 
                     console.log('message added');
+                    alert('Message Sent')
                     //  updateUsers();
-
+                    
                 })
                 .catch((error) => {
+                    alert('Message Not Sent')
                     console.log(error);
                 });
         }
@@ -105,7 +135,7 @@ export default function Chat() {
             console.log(senderUser.convs[`${recUser.id}`]);
         }
         else {
-            let obj = {};
+            let obj = senderUser.convs;
             obj[`${recUser.id}`] = convId
             senderUser.convs = obj;
 
@@ -116,7 +146,7 @@ export default function Chat() {
             console.log(recUser.convs[`${senderUser.id}`]);
         }
         else {
-            let obj = {};
+            let obj = recUser.convs;
             obj[`${senderUser.id}`] = convId
             recUser.convs = obj;
             // console.log(convId);
