@@ -24,7 +24,7 @@ const USerInfo = ({ post, user, imageUrl }) => {
                 </div>
             </div>
             {
-                (user.id !== contextData.getCurrentUser()?.id) ?
+                (user.id !== contextData.currentUser.uid) ?
                     <></>
                     :
                     <PostDropDown post={post} imageUrl={imageUrl} />
