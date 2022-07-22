@@ -40,7 +40,12 @@ export default function Test({ currPage }) {
               <Nav.Link>About</Nav.Link>
             </LinkContainer>
           </Nav>
+          {
+              contextData.isLoggedIn?
           <Badge  />
+          :
+          <></>
+          }
           <div style={{width:'2rem'}}></div>
           <Nav>
             <LinkContainer to={'/signin'}>
