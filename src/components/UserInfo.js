@@ -7,12 +7,10 @@ const USerInfo = ({ post, user, imageUrl }) => {
 
  const contextData = useContext(DataContext);
 
- useEffect(()=>{console.log('current',  contextData.getCurrentUser()); /* console.log('current', contextData.getCurrentUser());*/}, [user])
+ useEffect(()=>{console.log('current',  contextData.users); /* console.log('current', contextData.getCurrentUser());*/}, [user])
     return (
         <div className="profile-body user-profile">
-
             <div>
-
                 <div>
                     <Link to={`/profilePage/${user.id}`}>
                         <img src="../avatar.png" className="circle-img avatar-img" style={{ width: '4rem', height: '4rem' }} />
@@ -26,7 +24,7 @@ const USerInfo = ({ post, user, imageUrl }) => {
                 </div>
             </div>
             {
-                (user.id !== contextData.getCurrentUser().id) ?
+                (user.id !== contextData.getCurrentUser()?.id) ?
                     <></>
                     :
                     <PostDropDown post={post} imageUrl={imageUrl} />
