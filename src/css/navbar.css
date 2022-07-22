@@ -1,0 +1,27 @@
+html, body {
+  margin: 0px;
+}
+
+.side-nav-container {
+  height: 50rem;
+  margin: 0px;
+  background-color: #a3cfcd;
+  padding: 0.5rem;
+}
+.side-nav-container ul {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+.side-nav-container ul li {
+  text-decoration: none;
+  color: #2a272a;
+  width: 100%;
+  list-style-type: none;
+  cursor: pointer;
+}
+.side-nav-container ul li:hover {
+  background-color: #82a0aa;
+}
+
+/*# sourceMappingURL=navbar.css.map */

@@ -1,0 +1,29 @@
+
+    .side-nav-container{
+     
+    height: 50rem;
+    margin: 0px;
+    background-color: #a3cfcd;
+    padding: .5rem;
+   position: sticky;
+   top: 0;
+    ul{
+       margin: 0px;
+       padding: 0px;     
+        width: 100%;
+        li{
+            text-decoration: none;
+            color: #2a272a;   
+            width: 100%;
+            list-style-type: none;
+            cursor: pointer;
+            &:hover{
+                background-color:#82a0aa;
+                
+            }
+        }
+        
+    }
+    
+    
+}

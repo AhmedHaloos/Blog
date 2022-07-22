@@ -1,0 +1,470 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  background-color: #F0F2F5;
+}
+
+.root-body {
+  box-sizing: border-box;
+}
+
+.main-body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.form-body {
+  box-sizing: border-box;
+}
+
+.post-container {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+/* .side-nav-col{
+
+ 
+
+} */
+.side-nav-container {
+  height: 100%; 
+  width: 17rem; 
+  position: fixed;
+  z-index: 1;
+  top: 10rem; 
+  left: 0;
+  overflow-x: hidden; 
+}
+
+@media (max-width:1000px) {
+  .side-nav-container{
+    display: none;
+  }
+}
+
+
+
+.side-nav-container ul {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  /* padding-top: 2rem; */
+  margin-left: 0.5rem;
+  /* margin-right: 0.5rem; */
+}
+
+.side-nav-container ul li {
+  text-decoration: none;
+  color: #2a272a;
+  width: 100%;
+  list-style-type: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-left: 1rem;
+  padding-top: 0.3rem; 
+  padding-bottom: 0.6rem;
+  transform: scale(1, 1);
+  transition: transform .4s;
+  text-align: start;
+}
+
+.side-nav-container ul li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.03, 1.03);
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-body div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile-body div div img {
+  width: 4rem;
+  height: 4rem;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.profile-body div div {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.profile-body div div :nth-child(1) {
+  text-decoration: none;
+  font-size: large;
+  color: #2a272a;
+}
+
+.profile-body div div :nth-child(1) :hover {
+  text-decoration: underline;
+}
+
+.profile-body div div :nth-child(2) {
+  cursor: default;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: x-small;
+}
+
+.profile-body .colapse-icon {
+  margin-right: 1.2rem;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-body .colapse-icon:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.profile-body .colapse-icon:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.profile-body .colapse-icon i {
+  font-size: x-large;
+  cursor: pointer;
+}
+
+@keyframes disp-list {
+  from {
+    height: 0rem;
+  }
+
+  to {
+    height: 2.5rem;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.ddown-menu {
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
+  background-color: #ffffff;
+  animation-timing-function: linear;
+  position: absolute;
+  align-self: flex-end;
+  display: none;
+}
+
+.ddown-menu .list-menu {
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 50px;
+}
+
+.ddown-menu .list-menu .list-item {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  /* padding-top: 0.5rem; */
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  
+}
+
+.ddown-menu .list-menu .list-item:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.post-img {
+  border-radius: 0px 0px 0.2rem 0.2rem;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+  border: 0px;
+}
+
+.comment-body {
+  margin-top: 1rem;
+}
+
+.new-post {
+  background-color: #ffffff;
+  border: 0px;
+  border-radius: 0.3rem;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.new-post .user-profile {
+  border-radius: 0.5rem 0.5rem 0px 0px;
+  margin-bottom: .3rem;
+  /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2); */
+}
+
+.new-post .new-post-input input {
+  border: none;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 0.3rem;
+}
+
+.new-post .new-post-input input:focus {
+  outline: none;
+}
+
+.new-post .new-post-input textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 0px;
+  border-radius: 0.3rem;
+  resize: none;
+}
+
+.new-post .new-post-input textarea:focus {
+  outline: none;
+}
+
+.new-post #image-chooser {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.new-post #image-chooser i {
+  font-size: xx-large;
+  cursor: pointer;
+}
+
+.new-post Button {
+  width: 90%;
+  color: #f1f1f1;
+  padding: 0.5rem;
+  margin: 1rem;
+  border: 0px;
+}
+.create-new-post{
+  background-color: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-right: 0.3rem;
+}
+.create-new-post input{
+  border: none;
+  border-radius: 100px;
+  outline: none;
+  background-color: rgb(241, 241, 241);
+  width: 100%;
+  cursor: pointer;
+  padding: .6rem;
+  color: rgb(94, 93, 93);
+  text-align: start;
+}
+.create-new-post input:hover{
+  background-color:rgba(0, 0, 0, 0.15);
+}
+.create-new-post input:active{
+  background-color:rgba(0, 0, 0, 0.2);
+}
+
+/*# sourceMappingURL=main.css.map */
+/*****************************************/
+/* Popup style */
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  
+}
+
+.box {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+/********************************************/
+.blog-logo{
+  width: 50px;
+  height: 50px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-right: 2rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transform: scale(1, 1);
+  transition: transform 1s;
+}
+.blog-logo:hover{
+  transform: scale(1.5, 1.5);
+
+}
+
+.footer{
+  background-color: #2a272a;
+  color: #fff;
+   margin-top: auto
+}
+.footer:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+
+}
+.footer:nth-child(2):nth-child(2){
+  display: flex;
+  flex-direction: column;
+}
+
+.login{
+
+  margin-top: 10rem;
+}
+
+/********* float button chat **************/
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:rgba(65, 45, 245, 0.9);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+  cursor: pointer;
+}
+.float:hover{
+  background-color:rgb(125, 110, 255);
+
+}
+.float:active{
+
+  transform: scale(0.95, 0.95);
+}
+
+.my-float{
+	margin-top:22px;
+}
+/****************** Msg ***********************/
+
+.msg-body{
+
+  display: flex;
+box-sizing: border-box;
+
+margin-top: 0.5rem;
+ flex-direction: column;
+ margin-left:5rem ;
+ margin-right:5rem ;
+}
+.msg-body :nth-child(1){
+
+  width: fit-content;
+  border-radius: 10px;
+  margin-bottom: .3rem;
+  background-color: #fff;
+  padding: 0.5rem;
+  font-size: large;
+  box-shadow: 2px 2px 3px #999;
+}
+.msg-body :nth-child(2){
+
+width: fit-content;
+color: #999;
+background-color: #eee;
+font-size: x-small;
+
+}
+
+.chat{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10rem;
+  padding-bottom: 5rem;
+}
+/* .chat input{
+  width: 50%;
+  align-self: center;
+  margin-top: 1.5rem;
+} */
+#msgInput{
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem;
+  color: #2a272a;
+  outline: none;
+  width: 50rem;
+
+}
+.msg-input{
+
+  display: flex;
+  align-self: center;
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+background-color: rgb(221, 221, 221);
+padding: 0.5rem;
+margin: 0.5;
+width: 100%;
+}
+#sendMsgBtn{
+  width: fit-content;
+  padding: 0.5rem;
+  background-color: rgb(69, 69, 253, 0.9);
+  border: none;
+  border-radius: 10px;
+  margin-left: 1rem;
+}
+#sendMsgBtn:hover{
+  background-color: rgb(69, 69, 253); 
+}
+#sendMsgBtn:active{
+
+  transform: scale(0.99, 0.99);
+}
+
+
